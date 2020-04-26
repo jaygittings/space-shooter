@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6792918608680616368}
   - component: {fileID: 6792918608680616369}
+  - component: {fileID: 718759208210942677}
   m_Layer: 0
   m_Name: Square Enemy
   m_TagString: Untagged
@@ -81,3 +82,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &718759208210942677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792918608680616371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae7ed9ef6fbb9f4b8b3a290075ce50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

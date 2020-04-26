@@ -8,12 +8,18 @@ public class Player : MonoBehaviour
     //config
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 2f;
+    [SerializeField] GameObject playerBullet = null;
+    [SerializeField] float rateOfFire = 2f;
+    [SerializeField] float bulletSpeed = 10f;
 
     //state
     float xMin = 0f;
     float xMax = 1f;
     float yMin = 0f;
     float yMax = 1f;
+    Coroutine routine = null;
+    bool firing = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +32,36 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            if (firing)
+                return;
+
+            routine = StartCoroutine(FireContinuously());
+            firing = true;
+        }
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(routine);
+            firing = false;
+        }
+    }
+
+    IEnumerator FireContinuously()
+    {
+        while(true)
+        {
+            var bullet = Instantiate(playerBullet, transform.position, Quaternion.identity) as GameObject;
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, bulletSpeed);
+
+            yield return new WaitForSeconds(1 / rateOfFire);
+        }
     }
 
     private void CreateMoveBoundry()
