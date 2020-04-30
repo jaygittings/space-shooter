@@ -2,15 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     //config
+    [Header("Player Stats")]
+    [SerializeField] int playerHealth = 200;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 2f;
+    [SerializeField] int enemyLayer;
+    [SerializeField] GameObject explosion;
+    [SerializeField] float explosionTime = 1f;
+    [SerializeField] AudioClip explosionSound;
+    [SerializeField] [Range(0, 1)] float explosionSoundVolume = .75f;
+    [Header("Bullet Stats")]
     [SerializeField] GameObject playerBullet = null;
     [SerializeField] float rateOfFire = 2f;
     [SerializeField] float bulletSpeed = 10f;
+    [SerializeField] AudioClip[] bulletSounds;
+    [SerializeField] [Range(0, 1)] float bulletSoundVolume = .75f;
+    [SerializeField] bool soundEnabled;
 
     //state
     float xMin = 0f;
@@ -19,12 +31,22 @@ public class Player : MonoBehaviour
     float yMax = 1f;
     Coroutine routine = null;
     bool firing = false;
+    //AudioSource sound;
+    SceneControl controller;
+    Animator animator;
+    bool isDead;
 
 
     // Start is called before the first frame update
     void Start()
     {
         CreateMoveBoundry();
+        //sound = GetComponent<AudioSource>();
+        if(bulletSounds.Length > 0)
+            //sound.clip = bulletSounds[0];
+        controller = FindObjectOfType<SceneControl>();
+        animator = GetComponent<Animator>();
+
     }
 
 
@@ -59,7 +81,10 @@ public class Player : MonoBehaviour
         {
             var bullet = Instantiate(playerBullet, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, bulletSpeed);
-
+            if (soundEnabled)
+            {
+                AudioSource.PlayClipAtPoint(bulletSounds[0], Camera.main.transform.position, bulletSoundVolume);
+            }
             yield return new WaitForSeconds(1 / rateOfFire);
         }
     }
@@ -87,5 +112,50 @@ public class Player : MonoBehaviour
         newY = Mathf.Clamp(newY, yMin, yMax);
 
         transform.position = new Vector2(newX, newY);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var damage = collision.gameObject.GetComponent<DamageHandler>();
+        ProcessHit(damage);
+    }
+
+    private void ProcessHit(DamageHandler damage)
+    {
+        if(damage != null)
+        {
+            animator.SetTrigger("PlayerHit");
+            playerHealth -= damage.Damage;
+            damage.Hit();
+
+            if(playerHealth <= 0)
+            {
+                StartCoroutine(Die());
+            }
+
+        }
+    }
+
+    private IEnumerator Die()
+    {
+        isDead = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        var obj = Instantiate(explosion, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionSoundVolume);
+        Destroy(obj, explosionTime);
+        yield return new WaitForSeconds(explosionTime);
+        controller.LoadGameOver();
+        Destroy(gameObject);
+    }
+
+    public int GetHealth()
+    {
+        return playerHealth;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

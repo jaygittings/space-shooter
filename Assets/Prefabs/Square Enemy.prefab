@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 6792918608680616368}
   - component: {fileID: 6792918608680616369}
   - component: {fileID: 718759208210942677}
-  m_Layer: 0
+  - component: {fileID: 5571260842448937714}
+  - component: {fileID: 2463557633331540042}
+  - component: {fileID: -5714895067393347732}
+  - component: {fileID: 6665008696012167443}
+  m_Layer: 9
   m_Name: Square Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6792918608680616371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,3 +98,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae7ed9ef6fbb9f4b8b3a290075ce50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5571260842448937714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792918608680616371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9888168e7f9314eadf6dbc3772bc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shotCounter: 1
+  minTimeBetweenShots: 1
+  maxTimeBetweenShots: 2
+  explosion: {fileID: 7162718485294495151, guid: 693c36208ede51e42b352320f3469a7f,
+    type: 3}
+  explosionTime: 1
+  explosionSound: {fileID: 8300000, guid: fcbe3f54c05d55a47be0348149ba764f, type: 3}
+  explosionSoundVolume: 0.504
+  scoreForKill: 100
+  component: {fileID: 8125698587545266464, guid: ec18960d4fc3a3c40930bc29869f23c1,
+    type: 3}
+  componentSpawnChange: 50
+  enemyBullet: {fileID: 2586396097565323322, guid: 14341af062528a94994d5e701e6596ee,
+    type: 3}
+  bulletSpeed: 3
+  playerLayer: 8
+  bulletSounds:
+  - {fileID: 8300000, guid: e7d1164f6036cda46b44279281d6a611, type: 3}
+  bulletSoundVolume: 0.75
+  soundEnabled: 0
+--- !u!61 &2463557633331540042
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792918608680616371}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 1.09, y: 1.09}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &-5714895067393347732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792918608680616371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2da828a5ec5e34aa3c9741feca83d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 200
+--- !u!50 &6665008696012167443
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792918608680616371}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
