@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     //config
     [SerializeField] List<WaveConfig> waveConfigs;
+    [SerializeField] List<GameObject> enemyPrefabs;
     [SerializeField] bool loopWaves = false;
     //state
 
@@ -37,6 +38,8 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator StartEnemyWaveSpawns(WaveConfig config)
     {
         var waypoints = config.GetWaypoints();
+        //var index = (int)UnityEngine.Random.Range(0, enemyPrefabs.Count - 1);
+        //var prefab = enemyPrefabs[index];
         for(int i = 0; i < config.NumberOfEnemies; i++)
         {
             var enemy = Instantiate(config.EnemyPrefab, waypoints[0].position, Quaternion.identity);

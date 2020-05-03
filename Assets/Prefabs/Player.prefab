@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4fda58693ee3214f8a7290d88577258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 200
+  playerHealth: 300
   moveSpeed: 10
   padding: 0.3
   enemyLayer: 9
@@ -108,7 +108,7 @@ MonoBehaviour:
   explosionSoundVolume: 0.75
   playerBullet: {fileID: 7414013440057921200, guid: 9a45272872a234e41b6caf0e1f23dfa3,
     type: 3}
-  rateOfFire: 3
+  rateOfFire: 3.5
   bulletSpeed: 10
   bulletSounds:
   - {fileID: 8300000, guid: 0f8d5ff0c490c5b4abe14ca2524da57a, type: 3}

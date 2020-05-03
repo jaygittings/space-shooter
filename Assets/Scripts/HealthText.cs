@@ -13,12 +13,12 @@ public class HealthText : MonoBehaviour
     {
         text = GetComponent<TextMeshProUGUI>();
         player = FindObjectOfType<Player>();
-        text.text = player.GetHealth().ToString();
+        text.text = "Health: " + player.GetHealth().ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = player.GetHealth().ToString();
+        text.text = "Health: " + player.GetHealth().ToString();
     }
 }

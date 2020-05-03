@@ -541,6 +541,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3af2ed224da26f45ae61078cff107a4, type: 2}
   - {fileID: 11400000, guid: d0e9899f10238eb438b3fc60790389c7, type: 2}
   - {fileID: 11400000, guid: 5b7ecd10f23ee944b9eb885d40f00a5b, type: 2}
+  enemyPrefabs:
+  - {fileID: 6792918608680616371, guid: 364ea3420fe664344a5bffa755451a2b, type: 3}
+  - {fileID: 4677769498083449062, guid: 5593fb4eada8cf245854b13c81d8f4a8, type: 3}
+  - {fileID: 3958800397294152135, guid: b317b891275039f4796f71485e7c0a38, type: 3}
   loopWaves: 1
 --- !u!4 &2110113531
 Transform:

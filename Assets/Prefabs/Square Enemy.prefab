@@ -122,10 +122,10 @@ MonoBehaviour:
   scoreForKill: 100
   component: {fileID: 8125698587545266464, guid: ec18960d4fc3a3c40930bc29869f23c1,
     type: 3}
-  componentSpawnChange: 50
+  componentSpawnChange: 35
   enemyBullet: {fileID: 2586396097565323322, guid: 14341af062528a94994d5e701e6596ee,
     type: 3}
-  bulletSpeed: 3
+  bulletSpeed: 5
   playerLayer: 8
   bulletSounds:
   - {fileID: 8300000, guid: e7d1164f6036cda46b44279281d6a611, type: 3}
